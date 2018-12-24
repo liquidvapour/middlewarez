@@ -2,13 +2,13 @@
 function wrap(thingToWrap) {
   const items = [thingToWrap];
 
-  async function call(event, context) {
-    const next = async () => {
+  function call(event, context) {
+    const next = () => {
       const func = items.pop();
-      return await func(event, context, next);
+      return func(event, context, next);
     };
 
-    return await next();
+    return next();
   }
 
   function use(thingToUse) {
