@@ -1,25 +1,24 @@
-"use strict";
 
 function wrap(thingToWrap) {
-    const items = [thingToWrap];
+  const items = [thingToWrap];
 
-    async function call(event, context) {
-        const next = async () => {
-            const func = items.pop();
-            return await func(event, context, next);
-        };
+  async function call(event, context) {
+    const next = async () => {
+      const func = items.pop();
+      return await func(event, context, next);
+    };
 
-        return await next();
-    }
+    return await next();
+  }
 
-    function use(thingToUse) {
-        items.push(thingToUse);
-        return this;
-    }
+  function use(thingToUse) {
+    items.push(thingToUse);
+    return this;
+  }
 
-    call.use = use;
+  call.use = use;
 
-    return call;
+  return call;
 }
 
 module.exports = { wrap };

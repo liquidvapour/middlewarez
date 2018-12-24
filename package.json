@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./src/**/*.spec.js",
+    "lint": "eslint ./**/*.js"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "eslint": "^5.9.0"
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0"
   }
 }
