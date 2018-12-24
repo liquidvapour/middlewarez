@@ -1,6 +1,9 @@
-const { expect } = require('chai');
-
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
 const { wrap } = require('./pipeline');
+
+chai.use(chaiAsPromised);
+const { expect } = chai;
 
 const innerHandler = () => Promise.resolve({ status: 200 });
 const justCallNextMiddleware = (_event, _context, next) => next();
@@ -25,6 +28,16 @@ describe('pipeline', () => {
       const pipeline = wrap((_, context) => { expect(context).to.equal(passedContext); });
 
       await pipeline(null, passedContext);
+    });
+  });
+
+  describe('when error is thrown in the pipeline', () => {
+    it('should pass error up the pipe', async () => {
+      const errorMessage = 'test failure';
+      const failurePipelineNode = async () => { throw new Error(errorMessage); };
+      const pipeline = wrap(failurePipelineNode);
+
+      await expect(pipeline(null, null)).to.be.rejectedWith(errorMessage);
     });
   });
 });
