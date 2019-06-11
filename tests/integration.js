@@ -4,8 +4,8 @@ const { wrap } = require('../src/pipeline');
 
 async function heart(event, context) {
   console.log('in the middle Cirel');
-  console.log(`event: ${event}`);
-  console.log(`context ${context}`);
+  console.log(`event: ${JSON.stringify(event)}`);
+  console.log(`context ${JSON.stringify(context)}`);
 
   return { statusCode: 200 };
 }

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha ./src/**/*.spec.js",
-    "lint": "eslint ./**/*.js"
+    "lint": "eslint ./**/*.js",
+    "example": "node tests/integration.js"
   },
   "author": "",
   "license": "ISC",
